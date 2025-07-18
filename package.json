@@ -17,7 +17,9 @@
     "setup": "npm run install-all",
     "clean": "rm -rf node_modules server/node_modules client/node_modules",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd server && npm install"
+    "postinstall": "cd server && npm install",
+    "heroku-postbuild": "cd server && npm install",
+    "render-postbuild": "cd server && npm install"
   },
   "keywords": ["taskmanager", "pwa", "react", "nodejs", "postgresql", "express"],
   "author": "",
