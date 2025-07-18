@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+// import { format } from 'date-fns';
+// import { es } from 'date-fns/locale';
 import { 
   BarChart3, 
   MapPin, 
@@ -16,7 +16,7 @@ import toast from 'react-hot-toast';
 
 const Reports: React.FC = () => {
   const [locationProgress, setLocationProgress] = useState<LocationProgressReport | null>(null);
-  const [activities, setActivities] = useState<Activity[]>([]);
+  // const [activities, setActivities] = useState<Activity[]>([]);
   const [monthlyStats, setMonthlyStats] = useState<MonthlyStats | null>(null);
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());

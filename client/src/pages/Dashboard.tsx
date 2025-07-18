@@ -7,7 +7,7 @@ import {
   CheckCircle, 
   Clock, 
   AlertCircle,
-  TrendingUp,
+  // TrendingUp,
   Activity as ActivityIcon
 } from 'lucide-react';
 import { dashboardService } from '../services/api';
