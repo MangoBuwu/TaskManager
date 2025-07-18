@@ -15,8 +15,8 @@ Una aplicación web progresiva (PWA) para la gestión de actividades diarias con
 ### Características Técnicas
 - **PWA**: Instalable en dispositivos móviles y desktop
 - **Responsive Design**: Optimizado para todos los tamaños de pantalla
-- **Offline Support**: Funciona sin conexión a internet
-- **Real-time Updates**: Actualizaciones en tiempo real
+- **API REST**: Backend completo con Express.js
+- **Base de Datos**: PostgreSQL con esquema optimizado
 - **Modern UI**: Diseño minimalista estilo startup
 
 ## 🛠️ Tecnologías
@@ -31,9 +31,9 @@ Una aplicación web progresiva (PWA) para la gestión de actividades diarias con
 - **React Hot Toast** para notificaciones
 
 ### Backend
-- **Node.js** con Express
+- **Node.js 18+** con Express.js
 - **PostgreSQL** como base de datos
-- **JWT** para autenticación
+- **ES Modules** para sintaxis moderna
 - **CORS** y **Helmet** para seguridad
 - **Rate Limiting** para protección
 
@@ -42,52 +42,88 @@ Una aplicación web progresiva (PWA) para la gestión de actividades diarias con
 - **Web App Manifest** para instalación
 - **Workbox** para estrategias de cache
 
-## 📦 Instalación
+## 📦 Instalación Rápida
 
-### Prerrequisitos
+### Opción 1: Script Automático (Recomendado)
+
+```bash
+# Clonar el repositorio
+git clone <repository-url>
+cd taskmanager-app
+
+# Ejecutar script de instalación
+./setup.sh
+```
+
+### Opción 2: Instalación Manual
+
+#### Prerrequisitos
 - Node.js 18+ 
 - PostgreSQL 12+
 - npm o yarn
 
-### Configuración
+#### Pasos
 
-1. **Clonar el repositorio**
-```bash
-git clone <repository-url>
-cd taskmanager-app
-```
-
-2. **Instalar dependencias**
+1. **Instalar dependencias**
 ```bash
 npm run install-all
 ```
 
+2. **Configurar variables de entorno**
+```bash
+cp server/.env.example server/.env
+# Editar server/.env con tus credenciales de PostgreSQL
+```
+
 3. **Configurar base de datos**
 ```bash
-# Crear base de datos PostgreSQL
+# Crear base de datos
 createdb taskmanager
 
-# Ejecutar el esquema
+# Ejecutar esquema
 psql -d taskmanager -f server/database/schema.sql
 ```
 
-4. **Configurar variables de entorno**
+4. **Ejecutar la aplicación**
 ```bash
-# Copiar archivo de ejemplo
-cp server/.env.example server/.env
-
-# Editar con tus datos
-nano server/.env
-```
-
-5. **Ejecutar la aplicación**
-```bash
-# Desarrollo
+# Desarrollo (frontend + backend)
 npm run dev
 
+# Solo backend
+npm run server:dev
+
+# Solo frontend
+npm run client:dev
+```
+
+## 🌐 Acceso a la Aplicación
+
+- **Frontend**: http://localhost:3000
+- **Backend**: http://localhost:5000
+- **API Health**: http://localhost:5000/health
+- **API Info**: http://localhost:5000/api
+
+## 📋 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm run dev              # Ejecuta frontend + backend
+npm run server:dev       # Solo servidor backend
+npm run client:dev       # Solo cliente frontend
+
 # Producción
-npm run build
-npm start
+npm run build            # Construye el frontend
+npm start               # Inicia servidor de producción
+npm run server          # Solo servidor backend
+
+# Utilidades
+npm run install-all     # Instala todas las dependencias
+npm run setup           # Alias para install-all
+npm run clean           # Limpia node_modules
+
+# Base de datos
+cd server && npm run db:setup   # Configura la base de datos
+cd server && npm run db:reset   # Resetea la base de datos
 ```
 
 ## 🏗️ Estructura del Proyecto
@@ -108,7 +144,9 @@ taskmanager-app/
 │   ├── config/             # Configuración
 │   ├── database/           # Esquemas SQL
 │   └── index.js            # Servidor principal
-└── package.json            # Configuración raíz
+├── .github/workflows/      # GitHub Actions
+├── setup.sh               # Script de instalación
+└── package.json           # Configuración raíz
 ```
 
 ## 📱 Funcionalidades Detalladas
@@ -171,7 +209,7 @@ Sistema de códigos por áreas:
 
 ## 🚀 Despliegue
 
-### Desarrollo
+### Desarrollo Local
 ```bash
 npm run dev
 ```
@@ -182,9 +220,51 @@ npm run build
 npm start
 ```
 
-### Docker (Opcional)
+### GitHub Pages (Solo Frontend)
+Ver `DEPLOY_GITHUB_PAGES.md` para instrucciones detalladas.
+
+### Docker (Próximamente)
 ```bash
 docker-compose up -d
+```
+
+## 🔧 Configuración
+
+### Variables de Entorno (server/.env)
+```env
+PORT=5000
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=taskmanager
+DB_USER=postgres
+DB_PASSWORD=your_password
+JWT_SECRET=your_secret_key
+NODE_ENV=development
+```
+
+### Base de Datos
+La aplicación creará automáticamente:
+- 4 actividades predefinidas
+- 38 ubicaciones organizadas por áreas
+- 4 usuarios de ejemplo
+- Índices optimizados para consultas
+
+## 🐛 Solución de Problemas
+
+### Error de conexión a la base de datos
+- Verificar que PostgreSQL esté ejecutándose
+- Comprobar credenciales en `server/.env`
+- Asegurarse de que la base de datos `taskmanager` existe
+
+### Puerto ocupado
+- Cambiar puertos en `server/.env` y `client/vite.config.ts`
+- Verificar que los puertos 3000 y 5000 estén disponibles
+
+### Dependencias
+```bash
+# Limpiar e instalar de nuevo
+npm run clean
+npm run install-all
 ```
 
 ## 🤝 Contribución
@@ -201,7 +281,14 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 🐛 Soporte
 
-Para reportar bugs o solicitar funcionalidades, crear un issue en el repositorio.
+Para reportar bugs o solicitar funcionalidades:
+1. Crear un issue en el repositorio
+2. Incluir información del sistema y pasos para reproducir
+3. Adjuntar logs relevantes
+
+## 📞 Contacto
+
+Para soporte técnico o consultas, crear un issue en el repositorio.
 
 ---
 

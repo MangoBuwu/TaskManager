@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/taskmanager-app/', // Cambia esto por el nombre de tu repositorio
+  // Use base: '/' for local development, change to '/repo-name/' for GitHub Pages
+  base: '/',
   plugins: [
     react(),
     VitePWA({
@@ -50,6 +51,15 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true
+      }
+    }
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

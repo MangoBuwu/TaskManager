@@ -3,18 +3,40 @@
   "version": "1.0.0",
   "description": "TaskManager PWA para gestión de actividades diarias",
   "main": "server/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd server && npm run dev",
-    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "server": "cd server && npm start",
+    "client": "cd client && npm run build && npm run preview",
     "build": "cd client && npm run build",
-    "start": "cd server && npm start",
-    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+    "build:server": "cd server && npm run build",
+    "start": "npm run server",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "setup": "npm run install-all",
+    "clean": "rm -rf node_modules server/node_modules client/node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["taskmanager", "pwa", "react", "nodejs", "postgresql"],
+  "keywords": ["taskmanager", "pwa", "react", "nodejs", "postgresql", "express"],
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

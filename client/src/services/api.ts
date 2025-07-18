@@ -1,22 +1,3 @@
-import {
-  mockUserService,
-  mockActivityService,
-  mockLocationService,
-  mockAssignmentService,
-  mockHistoryService,
-  mockDashboardService
-} from './mockApi';
-
-// Use mock services for GitHub Pages deployment
-export const userService = mockUserService;
-export const activityService = mockActivityService;
-export const locationService = mockLocationService;
-export const assignmentService = mockAssignmentService;
-export const historyService = mockHistoryService;
-export const dashboardService = mockDashboardService;
-
-// Keep the original API for reference (commented out)
-/*
 import axios from 'axios';
 import type {
   User,
@@ -119,6 +100,5 @@ export const dashboardService = {
       params: { month, year } 
     }),
 };
-*/
 
-export default null;
+export default api;
