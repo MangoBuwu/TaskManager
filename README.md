@@ -214,14 +214,22 @@ Sistema de códigos por áreas:
 npm run dev
 ```
 
-### Producción
+### Render (Recomendado para Producción)
+Ver `DEPLOY_RENDER.md` para instrucciones detalladas.
+
+**Configuración rápida:**
+1. Conecta tu repositorio a Render
+2. Configura las variables de entorno
+3. Render detectará automáticamente el `render.yaml`
+
+### GitHub Pages (Solo Frontend)
+Ver `DEPLOY_GITHUB_PAGES.md` para instrucciones detalladas.
+
+### Producción Local
 ```bash
 npm run build
 npm start
 ```
-
-### GitHub Pages (Solo Frontend)
-Ver `DEPLOY_GITHUB_PAGES.md` para instrucciones detalladas.
 
 ### Docker (Próximamente)
 ```bash
